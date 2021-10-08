@@ -30,4 +30,4 @@ After your terminal shows the message `The server is running on localhost:3000`,
 
 ## Contributors
 * 先讓我幫貓咪換水 - developer
-* 咪球球 - pet a.k.a Kwisatz Hederach
+* 咪球球 - pet
