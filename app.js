@@ -1,15 +1,24 @@
-//9/28--> 利用靜態資料渲染index的餐廳頁面
-//9/28--> 打造show頁面的路由和畫面
-//9/28--> 設定搜尋功能(query string)
 
 //將 Express 和其他 package 導入專案
 const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
-const restoList = require('./restaurant.json')
+// const restoList = require('./restaurant.json')
 
 //設定伺服器相關變數
 const port = 3000
+
+//資料庫連線
+const mongoose = require('mongoose')
+
+mongoose.connect('mongodb://localhost:27017/restaurant')
+  .then(() => {
+    console.log('DB connection open!')
+  })
+  .catch(err => {
+    console.log('OH NO ERROR!!!')
+    console.log(err)
+  })
 
 //設定樣板引擎
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
