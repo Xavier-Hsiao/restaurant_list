@@ -3,6 +3,7 @@
 const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 const Resto = require('./models/resto')
 
 //設定伺服器相關變數
@@ -26,6 +27,7 @@ app.set('view engine', 'handlebars')
 
 //設定靜態文件
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 //首頁路由
 app.get('/', (req, res) => {
@@ -37,10 +39,23 @@ app.get('/', (req, res) => {
     .catch(err => console.log(err)) 
 })
 
-
 //新增餐廳表單路由
 app.get('/restaurants/new', (req, res) => {
   res.render('new')
+})
+
+//餐廳新增路由
+app.post('/restaurants/new', (req, res) => {
+  // console.log(req.body)
+  const {
+    name, category, image, location, phone, google_map, rating, description
+  } = req.body
+
+  Resto.create({
+    name, category, image, location, phone, google_map, rating, description
+  })
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
 })
 
 //餐廳介紹路由
@@ -61,6 +76,8 @@ app.get('/search', (req, res) => {
   const restos = restoList.results.filter(resto => resto.name.toLocaleLowerCase().includes(keyword) || resto.category.toLocaleLowerCase().includes(keyword))
   res.render('index', {restos, keyword})
 })
+
+
 
 //監聽通訊阜3000以啟動伺服器
 app.listen(port, () => {

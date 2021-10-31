@@ -1,1 +1,106 @@
-<h1>New!!!!</h1>
+<h1 class="restaurant-show-title">餐廳新增表單</h1>
+<div class="container">
+  <form action="/restaurants/new" method="POST" class="mb-5">
+    {{!-- Form row of name and category --}}
+    <div class="form-row">
+      <div class="col">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="name">
+              <i class="fas fa-store-alt pr-1"></i>
+              店名
+            </label>
+          </div>
+          <input type="text" name="name" id="name" class="form-control" placeholder="請輸入餐廳名稱" aria-label="name" aria-describedby="basic-addon1">
+        </div>       
+      </div>
+
+      <div class="col">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="category">
+              <i class="fas fa-drumstick-bite pr-1"></i>
+              類別
+            </label>
+          </div>
+          <input type="text" name="category" id="category" class="form-control" placeholder="請輸入餐廳類別" aria-label="category" aria-describedby="basic-addon1">
+        </div>       
+      </div>
+    </div>
+    {{!-- Form row of phone and rating --}}
+    <div class="form-row">
+      <div class="col">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="phone">
+              <i class="fas fa-mobile-alt pr-2"></i>
+              電話
+            </label>
+          </div>
+          <input type="text" name="phone" id="phone" class="form-control" placeholder="請輸入餐廳電話" aria-label="phone" aria-describedby="basic-addon1">
+        </div>       
+      </div>
+
+      <div class="col">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="rating">
+              <i class="fas fa-star pr-1"></i>
+              評分
+            </label>
+          </div>
+          <input type="number" name="rating" id="rating" class="form-control" placeholder="客官請給分，從0~5" min="0" max="5" step="0.5" aria-label="rating" aria-describedby="basic-addon1">
+        </div>       
+      </div>
+    </div>
+    {{!-- Form row of address --}}
+    <div class="form-row">
+      <div class="col">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="location">
+              <i class="fas fa-map-marker-alt pr-1"></i>
+              地址
+            </label>
+          </div>
+          <input type="text" name="location" id="location" class="form-control" placeholder="請輸入餐廳地址" aria-label="location" aria-describedby="basic-addon1">
+        </div>       
+      </div>
+    </div>
+    {{!-- Form row of description --}}
+    <div class="form-row">
+      <div class="col">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="location">
+              <i class="fas fa-comments pr-1"></i>
+              介紹
+            </label>
+          </div>
+          <textarea type="textarea" name="description" id="description" class="form-control" placeholder="簡單介紹一下這家餐廳有多棒吧~" aria-label="description" aria-describedby="basic-addon1"></textarea>
+        </div>       
+      </div>
+    </div>
+    {{!-- Form row of image --}}
+    <div class="form-row">
+      <div class="col">
+        <div class="input-group mb-5">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="image">
+              <i class="fas fa-image pr-1"></i>
+              圖片
+            </label>
+          </div>
+          <input type="text" name="image" id="image" class="form-control" placeholder="請附上美美的餐廳照片" aria-label="image" aria-describedby="basic-addon1">
+        </div>       
+      </div>
+    </div>
+    
+    <div class="d-flex flex-row justify-content-center">
+      <button type="submit" class="btn btn-outline-dark ml-2 btn-lg rounded-pill font-weight-bold">Save</button>
+      <a href="/" class="btn btn-outline-dark ml-2 btn-lg rounded-pill font-weight-bold">Back</a>
+      <button type="reset" class="btn btn-outline-danger ml-2 btn-lg rounded-pill font-weight-bold">Reset</button>
+    </div>
+
+  </form>
+</div>
