@@ -3,7 +3,6 @@
 const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
-// const restoList = require('./restaurant.json')
 const Resto = require('./models/resto')
 
 //設定伺服器相關變數
@@ -28,17 +27,23 @@ app.set('view engine', 'handlebars')
 //設定靜態文件
 app.use(express.static('public'))
 
-//路由
+//首頁路由
 app.get('/', (req, res) => {
   Resto.find() //叫資料庫查找所有餐廳資料
     .lean() ////將 Mongoose物件轉換成 JavaScrript陣列，這樣就不會再有save()之類的 Mongoose方法
     .then(restos => {
       res.render('index', {restos})
     })
-    .catch(err => console.log(err))
-  
+    .catch(err => console.log(err)) 
 })
 
+
+//新增餐廳表單路由
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+
+//餐廳介紹路由
 app.get('/restaurants/:id', (req, res) => {
   // console.log(req.params)
   const id = req.params.id
@@ -48,6 +53,7 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
+//餐廳搜尋路由
 app.get('/search', (req, res) => {
   // console.log(req.query)
   const keyword = req.query.keyword.toLocaleLowerCase().split(' ').join('')
