@@ -87,9 +87,8 @@ app.post('/restaurants/:id', (req, res) => {
 
 //餐廳搜尋路由
 app.get('/search', (req, res) => {
-  // console.log(req.query)
   const keyword = req.query.keyword.toLocaleLowerCase().split(' ').join('')
-  // console.log(keyword)
+  // const regexKeyword = new RegExp('\\w' + keyword + '\\w')
   Resto.find({$or: [{name: keyword}, {category: keyword}]})
     .lean()
     .then(restos => res.render('index', {restos, keyword}))
