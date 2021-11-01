@@ -90,9 +90,10 @@ app.get('/search', (req, res) => {
   // console.log(req.query)
   const keyword = req.query.keyword.toLocaleLowerCase().split(' ').join('')
   // console.log(keyword)
-  const restos = 
-  const restos = restoList.results.filter(resto => resto.name.toLocaleLowerCase().includes(keyword) || resto.category.toLocaleLowerCase().includes(keyword))
-  res.render('index', {restos, keyword})
+  Resto.find({$or: [{name: keyword}, {category: keyword}]})
+    .lean()
+    .then(restos => res.render('index', {restos, keyword}))
+    .catch(err => console.log(err))
 })
 
 //刪除餐廳路由
