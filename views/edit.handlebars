@@ -1,6 +1,6 @@
-<h1 class="restaurant-show-title">餐廳新增表單</h1>
+<h1 class="restaurant-show-title">編輯餐廳</h1>
 <div class="container">
-  <form action="/restaurants/new" method="POST" class="mb-5">
+  <form action="/restaurants/{{resto._id}}" method="POST" class="mb-5">
     {{!-- Form row of name and category --}}
     <div class="form-row">
       <div class="col">
@@ -11,7 +11,7 @@
               店名
             </label>
           </div>
-          <input type="text" name="name" id="name" class="form-control" placeholder="請輸入餐廳名稱" aria-label="name" aria-describedby="basic-addon1">
+          <input type="text" name="name" id="name" class="form-control" placeholder="請輸入餐廳名稱" value="{{resto.name}}" aria-label="name" aria-describedby="basic-addon1">
         </div>       
       </div>
 
@@ -23,7 +23,7 @@
               類別
             </label>
           </div>
-          <input type="text" name="category" id="category" class="form-control" placeholder="請輸入餐廳類別" aria-label="category" aria-describedby="basic-addon1">
+          <input type="text" name="category" id="category" class="form-control" placeholder="請輸入餐廳類別" value="{{resto.category}}" aria-label="category" aria-describedby="basic-addon1">
         </div>       
       </div>
     </div>
@@ -37,7 +37,7 @@
               電話
             </label>
           </div>
-          <input type="text" name="phone" id="phone" class="form-control" placeholder="請輸入餐廳電話" aria-label="phone" aria-describedby="basic-addon1">
+          <input type="text" name="phone" id="phone" class="form-control" placeholder="請輸入餐廳電話" value="{{resto.phone}}" aria-label="phone" aria-describedby="basic-addon1">
         </div>       
       </div>
 
@@ -49,7 +49,7 @@
               評分
             </label>
           </div>
-          <input type="number" name="rating" id="rating" class="form-control" placeholder="客官請給分，從0~5" min="0" max="5" step="0.5" aria-label="rating" aria-describedby="basic-addon1">
+          <input type="number" name="rating" id="rating" class="form-control" placeholder="客官請給分，從0~5" min="0" max="5" step="0.5" value="{{resto.rating}}" aria-label="rating" aria-describedby="basic-addon1">
         </div>       
       </div>
     </div>
@@ -63,7 +63,7 @@
               地址
             </label>
           </div>
-          <input type="text" name="location" id="location" class="form-control" placeholder="請輸入餐廳地址" aria-label="location" aria-describedby="basic-addon1">
+          <input type="text" name="location" id="location" class="form-control" placeholder="請輸入餐廳地址" value="{{resto.location}}" aria-label="location" aria-describedby="basic-addon1">
         </div>       
       </div>
     </div>
@@ -77,7 +77,7 @@
               介紹
             </label>
           </div>
-          <textarea type="textarea" name="description" id="description" class="form-control" placeholder="簡單介紹一下這家餐廳有多棒吧~" aria-label="description" aria-describedby="basic-addon1"></textarea>
+          <textarea type="textarea" name="description" id="description" class="form-control" placeholder="簡單介紹一下這家餐廳有多棒吧~" aria-label="description" aria-describedby="basic-addon1">{{resto.description}}</textarea>
         </div>       
       </div>
     </div>
@@ -91,7 +91,7 @@
               圖片
             </label>
           </div>
-          <input type="text" name="image" id="image" class="form-control" placeholder="請附上美美的餐廳照片" aria-label="image" aria-describedby="basic-addon1">
+          <input type="text" name="image" id="image" class="form-control" placeholder="請附上美美的餐廳照片" value="{{resto.image}}" aria-label="image" aria-describedby="basic-addon1">
         </div>       
       </div>
     </div>

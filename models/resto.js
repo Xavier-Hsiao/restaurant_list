@@ -7,6 +7,7 @@ const commonType = {
 
 const restoSchema = new Schema({
   name: commonType,
+  phone: commonType,
   category: commonType,
   location: commonType,
   rating: Number,

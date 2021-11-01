@@ -68,15 +68,40 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
+//取得編輯餐廳路由
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  Resto.findById(id)
+    .lean()
+    .then(resto => res.render('edit', {resto}))
+    .catch(err => console.log(err))
+})
+
+//編輯餐廳內容路由
+app.post('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  Resto.findByIdAndUpdate(id, req.body)
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch(err => console.log(err))
+})
+
 //餐廳搜尋路由
 app.get('/search', (req, res) => {
   // console.log(req.query)
   const keyword = req.query.keyword.toLocaleLowerCase().split(' ').join('')
   // console.log(keyword)
+  const restos = 
   const restos = restoList.results.filter(resto => resto.name.toLocaleLowerCase().includes(keyword) || resto.category.toLocaleLowerCase().includes(keyword))
   res.render('index', {restos, keyword})
 })
 
+//刪除餐廳路由
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  Resto.findByIdAndRemove(id)
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
 
 
 //監聽通訊阜3000以啟動伺服器

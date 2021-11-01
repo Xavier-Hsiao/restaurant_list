@@ -41,7 +41,9 @@
               <div class="d-flex flex-row-reverse">
                 <a href="/restaurants/{{this._id}}/edit" class="btn btn-outline-dark btn-sm ml-2 rounded-pill font-weight-bold">Edit</a>
                 <a href="/restaurants/{{this._id}}" class="btn btn-outline-dark btn-sm ml-2 rounded-pill font-weight-bold">Detail</a>
-                <a href="/restaurants/{{this._id}}/delete" class="btn btn-outline-danger btn-sm rounded-pill font-weight-bold">Delete</a>
+                <form action="/restaurants/{{this._id}}/delete" method="post">
+                  <button class="btn btn-outline-danger btn-sm rounded-pill font-weight-bold">Delete</button>
+                </form>
               </div>
               
 
