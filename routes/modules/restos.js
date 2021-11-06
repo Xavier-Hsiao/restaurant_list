@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Resto = require('../../models/resto')
+const GOOGLE_MAP_URL = 'https://www.google.com/maps/search/?api=1'
 
 //新增餐廳表單路由
 router.get('/new', (req, res) => {
@@ -11,8 +12,10 @@ router.get('/new', (req, res) => {
 router.post('/new', (req, res) => {
   // console.log(req.body)
   const {
-    name, category, image, location, phone, google_map, rating, description
+    name, category, image, location, phone, rating, description
   } = req.body
+
+  const google_map = `${GOOGLE_MAP_URL}&query=${name}`
 
   Resto.create({
     name, category, image, location, phone, google_map, rating, description
@@ -59,9 +62,6 @@ router.put('/:id', (req, res) => {
       res.render(('error', {status: 500, error: err.message}))
     }) 
 })
-
-//餐廳搜尋路由
-
 
 //刪除餐廳路由
 router.delete('/:id', (req, res) => {

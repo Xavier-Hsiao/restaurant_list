@@ -5,20 +5,8 @@ const app = express()
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
-const port = 3000
-
-//資料庫連線
-const mongoose = require('mongoose')
 const { ExpressHandlebars } = require('express-handlebars')
-
-mongoose.connect('mongodb://localhost:27017/restaurant')
-  .then(() => {
-    console.log('DB connection open!')
-  })
-  .catch(err => {
-    console.log('OH NO ERROR!!!')
-    console.log(err)
-  })
+const port = 3000
 
 //設定樣板引擎
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
@@ -35,6 +23,8 @@ app.use(methodOverride('_method'))
 const route = require('./routes/index')
 app.use(route)
 
+//引用 mongoose.js
+require('./config/mongoose')
 
 //監聽通訊阜3000以啟動伺服器
 app.listen(port, () => {
