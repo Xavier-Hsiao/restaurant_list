@@ -50,7 +50,7 @@ router.get('/:id/edit', (req, res) => {
 })
 
 //編輯餐廳內容路由
-router.post('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   const id = req.params.id
   Resto.findByIdAndUpdate(id, req.body)
     .then(() => res.redirect(`/restaurants/${id}`))
@@ -64,7 +64,7 @@ router.post('/:id', (req, res) => {
 
 
 //刪除餐廳路由
-router.post('/:id/delete', (req, res) => {
+router.delete('/:id', (req, res) => {
   const id = req.params.id
   Resto.findById(id)
     .then(resto => resto.remove())
