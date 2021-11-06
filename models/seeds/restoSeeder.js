@@ -23,3 +23,4 @@ mongoose.connect('mongodb://localhost:27017/restaurant', { useNewUrlParser: true
     console.log('OH NO ERROR!!!')
     console.log(err)
   })
+  .finally(() => process.exit(0))
