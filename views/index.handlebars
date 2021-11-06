@@ -51,7 +51,7 @@
                 <a href="/restaurants/{{this._id}}/edit" class="btn btn-outline-dark btn-sm ml-2 rounded-pill font-weight-bold">Edit</a>
                 <a href="/restaurants/{{this._id}}" class="btn btn-outline-dark btn-sm ml-2 rounded-pill font-weight-bold">Detail</a>
                 <form action="/restaurants/{{this._id}}?_method=DELETE" method="post">
-                  <button class="btn btn-outline-danger btn-sm rounded-pill font-weight-bold">Delete</button>
+                  <button class="btn btn-outline-danger btn-sm rounded-pill font-weight-bold btn-delete" data-id="{{this._id}}">Delete</button>
                 </form>
               </div>
               
@@ -70,3 +70,5 @@
   </div>
   {{/if}}
 </div>
+
+<script src="/javascripts/delete.js"></script>
