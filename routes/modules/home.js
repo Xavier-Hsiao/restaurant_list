@@ -16,10 +16,34 @@ router.get('/', (req, res) => {
 
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword.toLocaleLowerCase().split(' ').join('')
-  // const regexKeyword = new RegExp('\\w' + keyword + '\\w')
+  // console.log(req.query.sort)
+  const sortCondition = req.query.sort
+  const sortOption = {}
+
+  switch(sortCondition) {
+    case 'ascend':
+      sortOption['name'] = 'asc'
+      break
+    case 'descend':
+      sortOption['name'] = 'desc'
+      break
+    case 'category':
+      sortOption['category'] = 'asc'
+      break
+    case 'location':
+      sortOption['location'] = 'asc'
+    default:
+      sortOption['name'] = 'asc'
+  }
+
   Resto.find({$or: [{name: keyword}, {category: keyword}]})
     .lean()
-    .then(restos => res.render('index', {restos, keyword}))
+    .sort(sortOption)
+    .then(restos => {
+      console.log(restos)
+      res.render('index', {restos, keyword})
+    })
+    .then(() => console.log(sortOption))
     .catch(err => {
       console.log(err)
       res.render(('error', {status: 500, error: err.message}))
