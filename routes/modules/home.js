@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/search', (req, res) => {
-  const keyword = req.query.keyword.toLocaleLowerCase().split(' ').join('')
+  const keyword = req.query.keyword.toLowerCase().split(' ').join('')
   // console.log(req.query.sort)
   const sortCondition = req.query.sort
   const sortOption = {}
@@ -36,14 +36,16 @@ router.get('/search', (req, res) => {
       sortOption['name'] = 'asc'
   }
 
-  Resto.find({$or: [{name: keyword}, {category: keyword}]})
+  Resto.find()
     .lean()
     .sort(sortOption)
-    .then(restos => {
-      console.log(restos)
-      res.render('index', {restos, keyword})
+    .then(restaurants => {
+      restaurants = restaurants.filter(restaurant => {
+        return restaurant.name.toLowerCase().includes(keyword) || restaurant.category.toLowerCase().includes(keyword)
+      })
+      res.render('index', { restos: restaurants, keyword: keyword })
     })
-    .then(() => console.log(sortOption))
+    // .then(() => console.log(sortOption))
     .catch(err => {
       console.log(err)
       res.render(('error', {status: 500, error: err.message}))
